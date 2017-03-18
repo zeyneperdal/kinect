@@ -47,10 +47,10 @@ void setup()
      return;  
   }
   
-  // enable depthMap generation 
+  // derinlik aktifleştir
   kinect.enableDepth();
    
-  // enable skeleton generation for all joints
+  // tüm eklemler için iskelet takibi başlat
   kinect.enableUser();
  
   background(200,0,0);
@@ -58,7 +58,7 @@ void setup()
   stroke(0,0,255);
   strokeWeight(3);
   smooth();  
-   s = new Server(this, 12345); // Start a simple server on a port 
+   s = new Server(this, 12345); // serverda port başlat
 }
 
 void draw()
@@ -123,7 +123,7 @@ void drawSkeleton(int userId)
   stroke(255,0,0);
   strokeWeight(5);
   //Pozisyonları yazdır
-  //TODO:180 e normalize et!
+  //TODO:map ile 180 e yada 255 e normalize et! Servoya göre yapılacak!
 /*
   PVector jointPos = new PVector();
   kinect.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_NECK,jointPos);
@@ -181,7 +181,7 @@ void onLostUser(SimpleOpenNI curkinect, int userId)
 
 void onVisibleUser(SimpleOpenNI curkinect, int userId)
 {
-  //println("onVisibleUser - userId: " + userId);
+  //println("Kullanici Görünür - userId: " + userId);
 }
 
 
@@ -211,25 +211,26 @@ void updateAngles() {
   
 
  /*
- // Left Leg
+ // sol bacak
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_FOOT, lFoot);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_KNEE, lKnee);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_HIP, lHip);
  
  */
-  // Left Arm
+  // sol kol
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_HAND, lHand);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_ELBOW, lElbow);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_LEFT_SHOULDER, lShoulder);
- // Right Arm
+ // sağ kol
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_HAND, rHand);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_ELBOW, rElbow);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_SHOULDER, rShoulder);
- // Right Leg
+ // sağ bacak
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_FOOT, rFoot);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_KNEE, rKnee);
  kinect.getJointPositionSkeleton(1, SimpleOpenNI.SKEL_RIGHT_HIP, rHip); 
-  angles[0] = atan2(PVector.sub(rShoulder, lShoulder).z, PVector.sub(rShoulder, lShoulder).x); 
+ 
+ angles[0] = atan2(PVector.sub(rShoulder, lShoulder).z, PVector.sub(rShoulder, lShoulder).x); 
  
  kinect.convertRealWorldToProjective(rFoot, rFoot);
  kinect.convertRealWorldToProjective(rKnee, rKnee);
@@ -246,12 +247,12 @@ void updateAngles() {
  kinect.convertRealWorldToProjective(rElbow, rElbow);
  kinect.convertRealWorldToProjective(rShoulder, rShoulder);
  /*
- // Left-Side Angles
+ // sol taraf açıları
  angles[1] = angle(lShoulder, lElbow, lHand);
  angles[2] = angle(rShoulder, lShoulder, lElbow);
  angles[3] = angle(lHip, lKnee, lFoot);
  angles[4] = angle(new PVector(lHip.x, 0), lHip, lKnee);
- // Right-Side Angles
+ // sağ taraf açıları
  angles[5] = angle(rHand, rElbow, rShoulder);
  angles[6] = angle(rElbow, rShoulder, lShoulder );
  angles[7] = angle(rFoot, rKnee, rHip);
