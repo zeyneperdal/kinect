@@ -44,12 +44,12 @@ void loop() {
     temp1,temp2,temp3,temp4=0;
     }
 
-//pulse9 = (int)map(temp1,0,180,2500,500); //rotation
+//pulse9 = (int)map(temp1,0,180,2500,500); //yönü
 
-pulse2 = (int)map(temp2,0,180,2500,500); //right Elbow
-pulse1 = (int)map(temp3,0,180,2500,500); //right Shoulder
-pulse4 = (int)map(temp4,0,180,500,2500); //right Knee
-pulse3 = (int)map(temp1,0,180,2500,500); //right Hip 
+pulse2 = (int)map(temp2,0,180,2500,500); //sağ kol
+pulse1 = (int)map(temp3,0,180,2500,500); //sağ üst kol
+pulse4 = (int)map(temp4,0,180,500,2500); //sağ alt bacak
+pulse3 = (int)map(temp1,0,180,2500,500); //sağ üst bacak
 
 unsigned long currentMillis = millis();
  if(currentMillis - previousMillis > interval) {
@@ -58,7 +58,7 @@ unsigned long currentMillis = millis();
  updateServo(servo1Pin, pulse3);
  updateServo(servo2Pin, pulse4);
 // updateServo(servo3Pin, pulse5);
- //updateServo(servo4Pin, pulse6);
+ //updateServo(servo4Pin, pulse6); // kaç tane servo varsa pulseları ayarlayıp ekle
  }
 } 
 
