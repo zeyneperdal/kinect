@@ -1,13 +1,12 @@
- int val; // Data received from the serial port
+ int val; // serialden gelen data
 #include <Servo.h>
 
-Servo myservo;  // create servo object to control a servo
-// twelve servo objects can be created on most boards
+Servo myservo;  
 
-int pos = 0;    // variable to store the servo position
+int pos = 0;    // servo pozisyonu
 
 void setup() {
-  myservo.attach(2);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(2);  // 2ye bağla
 Serial.begin(9600);
 }
 
@@ -20,10 +19,10 @@ void loop() {
   else{
     val=0;
     }
-    for (pos = 0; pos <= val; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
+    for (pos = 0; pos <= val; pos += 1) { // 0dan alınan değere göre 1er derece ilerlet
+    
+    myservo.write(pos);             
+    delay(15);                       
   }
   
 }
